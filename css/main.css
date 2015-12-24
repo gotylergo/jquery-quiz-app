@@ -1,0 +1,68 @@
+html {
+/*	height: 100%;
+	min-height: 100%;*/
+}
+body {
+	background: #00285e url('../img/pepsi-water-drops.jpg') no-repeat;
+	background-size: cover;
+/*	min-height: 100%;
+*/	margin: 0;
+	padding: 0;
+}
+.content {
+	margin: 0 auto;
+	text-align: center;
+}
+.circle {
+	margin: 0 auto;
+	position: relative;
+	padding-top: 6em;
+	color: #fff;
+	border-radius: 50%;
+	height: 18em;
+	width: 18em;
+	z-index: 1;
+	display: block;
+}
+.circle:after {
+	content: ""
+	display: inline-block;
+	width: 100%;
+}
+.red-circle {
+	margin-top: 2em;
+	background-color: #eb1d39;
+	left: -7em;
+}
+.white-circle {
+	background-color: #fff;
+	color: #000;
+	top: -8em;
+	left: 7em;
+	z-index: 2;
+}
+.blue-circle {
+	background-color: #005891;
+	left: -7em;
+	top: -16em;
+}
+#quizProgress {
+	list-style-type: none;
+}
+#quizProgress > li {
+	display: inline-block;
+	height: 1em;
+	width: 1em;
+	padding: 0;
+	margin: 0 .25em;
+	background-color: #fff;
+	border-radius: 50%;
+}
+footer {
+	color: #fff;
+	font-weight: bolder;
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+	text-align: right;
+}
