@@ -8,19 +8,53 @@
 </head>
 <body>
 	<div class="content">
-		<div class="z-depth-2 waves-effect circle red-circle">
-			<h4>The Pepsi Quiz</h1>
-			<!-- <p>How much do you know?</p> -->
-			<ul id="quizProgress">
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
+		<div class="z-depth-2 circle red-circle">
+			<div class="circle-content">
+				<h4>The Pepsi Quiz</h1>
+				<ul id="quizProgress">
+					<li>&#x2714;</li>
+					<li>&#x2718;</li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
 		</div>
-		<div class="z-depth-3 waves-effect circle white-circle"></div>
-		<div class="z-depth-2 waves-effect circle blue-circle"></div>
+		<div class="z-depth-3 circle white-circle">
+			<div class="circle-content">
+				<h5 id="gameStart">How much do you know?</h5>
+				<h5 id="question1">What was Pepsi originally called?</h5>
+				<h5 id="question2">True or false: Pepsi is marketed as Pecsi in Argentina.</h5>
+				<h5 id="question3">What was the name of Pepsi's discontinued citrus flavored beverage, introduced in the early 90s?</h5>
+				<h5 id="question4">True or false: The red and blue Pepsi Globe logo is meant to model the concept of yin and yang"</h5>
+				<h5 id="question5">What size of drink did Pepsi introduce?</h5>
+			</div>
+		</div>
+		<div class="z-depth-2 circle blue-circle">
+			<div class="circle-content">
+				<form action="#">
+					<button type="submit" class="btn waves-effect">Start</button>
+				</form>
+				<form action="#">
+					<p>
+				     	<input name="answers1" type="radio" id="answer1" />
+				     	<label for="answer1">Brad's Drink</label>
+					</p>
+					<p>
+						<input name="answers1" type="radio" id="answer2" />
+						<label for="answer2">Pepsi Cola</label>
+					</p>
+					<p>
+						<input name="answers1" type="radio" id="answer3"  />
+						<label for="answer3">Pecsi</label>
+					</p>
+					<p>
+						<input name="answers1" type="radio" id="answer4" />
+						<label for="answer4">A Bully Drink</label>
+					</p>
+				 </form>
+			</div>
+		</div>
 		 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 	</div>
