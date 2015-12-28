@@ -33,30 +33,57 @@ var q5 = {
 	correct: 3,
 	fact: "PepsiCo introduced the first two-liter sized soft drink bottle in 1970."
 }
-var qCount
-var qCorrect
-function startGame() {
-	qCount = 0;
-	qCorrect = 0;
-	$("#infoBox").html(q1.q);
-	alert("startGame");
-};
+var qCount = 0;
+var qCorrect = 0;
+var questions = [q1,q2,q3,q4,q5];
+
+function changeQuestion(){
+	if(qCount >= questions.length){
+		$('#answers').fadeOut();
+		$('#infoBox').html('Quiz Complete: You Scored '+qCorrect+' of '+questions.length);
+	} else {
+		var question = questions[qCount];
+		$('#infoBox').html(question.q);
+		var html = "";
+		for (var i = 0; i < question.a.length; i++) {
+			html += "<p><input name='"+i+"' type='radio' id='"+i+"' />";
+			html += "<label for='"+i+"'>"+question.a[i]+"</label></p>";
+		};
+		$('#answers').html(html);
+	}
+}
+
+function checkAnswer(answer){
+	var question = questions[qCount];
+
+		if(question.correct == answer){
+			qCorrect++;
+		}
+
+	console.log(qCorrect);
+
+	qCount++;
+	changeQuestion();
+}
 
 $(document).ready(function() {
 	$("body").hover(function() {
 		$("#content").fadeIn();
 	});
 	$( "#startButton" ).click(function( event ) {
-	event.preventDefault();
-	$("#infoBox").fadeOut(function() {
-		$(this).html(q1.q).fadeIn();
+		event.preventDefault();
+		$("#infoBox").fadeOut(function() {
+			$("#startButton").fadeOut(function() {
+					changeQuestion();
+					$("#answers").fadeIn();
+					$("#infoBox").fadeIn();
+			});
+		});
+		
+		// qCount = 1;
 	});
-	$("#startButton").fadeOut(function() {
-			$("#answers").fadeIn();
-	});
-	qCount = 1;
-	});
-	$("#answers").submit(function() {
-		alert("it works");
+	$("#answers").on('click','input',function() {
+		var answer = $(this).attr('name');
+		checkAnswer(answer);
 	});
 });
