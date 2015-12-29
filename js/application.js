@@ -48,6 +48,18 @@ function changeQuestion(){
 	}
 }
 
+function displayFact() {
+	var question = questions[qCount];
+	$("#infoBox").html(question.fact);
+	$("#answers").html('<form action="#"><button id="nextButton" type="submit" class="btn waves-effect">Next Question</button></form>');
+	$("#nextButton").on("click", function(event) {
+		event.preventDefault();
+		changeQuestion();
+		checkAnswer(answer);
+	})
+}
+
+
 function checkAnswer(answer){
 	var question = questions[qCount];
 
@@ -58,11 +70,9 @@ function checkAnswer(answer){
 			$("#quizProgress > li:nth-child("+(qCount+1)+")").html("&#x2718;");
 		};
 	qCount++;
-	changeQuestion();
 }
 
 $(document).ready(function() {
-  	$(document.body).fadeIn(1000);
 	$( "#startButton" ).on('click',function( event ) {
 		event.preventDefault();
 		$("#infoBox").fadeOut(function() {
@@ -75,6 +85,7 @@ $(document).ready(function() {
 	});
 		$("#answers").on('click','input',function() {
 		var answer = $(this).attr('name');
+		displayFact();
 		checkAnswer(answer);
 	});
 });

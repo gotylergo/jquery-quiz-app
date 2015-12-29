@@ -3,7 +3,6 @@ body {
 	background: #00285e url('../img/pepsi-water-drops.jpg') no-repeat;
 	background-size: cover;
 	margin: 0;
-	display: none;
 }
 .content {
 	margin: 2em auto;
