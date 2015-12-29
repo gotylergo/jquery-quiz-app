@@ -34,8 +34,8 @@ var questions = [q1,q2,q3,q4,q5];
 
 function changeQuestion(){
 	if(qCount >= questions.length){
-		$('#answers').fadeOut();
 		$('#infoBox').html('Quiz Complete: You Scored '+qCorrect+' of '+questions.length);
+		$("#answers").html('<form action="#"><button id="playButton" type="submit" class="btn waves-effect">Play again</button></form>');
 	} else {
 		var question = questions[qCount];
 		$('#infoBox').fadeIn().html(question.q);
