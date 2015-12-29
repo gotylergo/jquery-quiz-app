@@ -1,3 +1,5 @@
+// Set question arrays
+
 var q1 = {
 	q: "What was Pepsi originally called?",
 	a: ["Pepsi Cola","Brad's Drink","Pecsi","A Bully Drink"],
@@ -28,17 +30,41 @@ var q5 = {
 	correct: 3,
 	fact: "PepsiCo introduced the first two-liter sized soft drink bottle in 1970."
 }
+// Set global variables
+
 var qCount = 0;
 var qCorrect = 0;
 var questions = [q1,q2,q3,q4,q5];
 
+function startGame() {
+	$( "#startButton" ).on('click',function( event ) {
+		event.preventDefault();
+		$("#infoBox").hide(function() {
+			$("#startButton").hide(function() {
+					changeQuestion();
+					$("#answers").show();
+					$("#infoBox").show();
+			});
+		});
+	});
+		$("#answers").on('click','input',function() {
+		var answer = $(this).attr('name');
+		displayFact();
+		checkAnswer(answer);
+	});
+}
+
+
+// Change question if quiz has not completed, if quiz is completed, display score and play again button, then reset the game
+
 function changeQuestion(){
 	if(qCount >= questions.length){
 		$('#infoBox').html('Quiz Complete: You Scored '+qCorrect+' of '+questions.length);
-		$("#answers").html('<form action="#"><button id="playButton" type="submit" class="btn waves-effect">Play again</button></form>');
+		$("#answers").html('<form action="#"><button id="startButton" type="submit" class="btn waves-effect">Play again</button></form>');
+		startGame();
 	} else {
 		var question = questions[qCount];
-		$('#infoBox').fadeIn().html(question.q);
+		$('#infoBox').show().html(question.q);
 		var answersHtml = "";
 		for (var i = 0; i < question.a.length; i++) {
 			answersHtml += "<p><input name='"+i+"' type='radio' id='"+i+"' />";
@@ -48,6 +74,8 @@ function changeQuestion(){
 	}
 }
 
+// Display fact after each question
+
 function displayFact() {
 	var question = questions[qCount];
 	$("#infoBox").html(question.fact);
@@ -55,10 +83,10 @@ function displayFact() {
 	$("#nextButton").on("click", function(event) {
 		event.preventDefault();
 		changeQuestion();
-		checkAnswer(answer);
 	})
 }
 
+// Check if answer is correct and check/cross off progress marker accordingly
 
 function checkAnswer(answer){
 	var question = questions[qCount];
@@ -72,20 +100,8 @@ function checkAnswer(answer){
 	qCount++;
 }
 
-$(document).ready(function() {
-	$( "#startButton" ).on('click',function( event ) {
-		event.preventDefault();
-		$("#infoBox").fadeOut(function() {
-			$("#startButton").fadeOut(function() {
-					changeQuestion();
-					$("#answers").fadeIn();
-					$("#infoBox").fadeIn();
-			});
-		});
-	});
-		$("#answers").on('click','input',function() {
-		var answer = $(this).attr('name');
-		displayFact();
-		checkAnswer(answer);
-	});
-});
+// Function to set/reset variables and start game
+
+$(document).ready(
+	startGame()
+	);
